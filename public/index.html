@@ -9,11 +9,13 @@
   <div class="container">
     <h1>Login</h1>
     <form id="login-form">
-      <label>Email:
+      <label>
+        Email:
         <input type="email" name="email" required>
       </label>
 
-      <label>Senha:
+      <label>
+        Senha:
         <input type="password" name="senha" required>
       </label>
 
@@ -32,22 +34,29 @@
       const formData = new FormData(this);
       const data = {
         email: formData.get('email'),
-        senha: formData.get('senha')
+        senha: formData.get('senha'),
       };
 
-      const response = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
 
-      if (response.ok) {
-        window.location.href = '/home.html';
-      } else {
-        const error = await response.text();
-        alert('Erro: ' + error);
+        // sempre parse JSON
+        const resultado = await response.json();
+
+        if (resultado.success) {
+          // redireciona para a página principal
+          window.location.href = '/home.html';
+        } else {
+          // mostra a mensagem de erro enviada pelo servidor
+          alert('Erro: ' + resultado.message);
+        }
+      } catch (err) {
+        // erro de rede ou outro
+        alert('Erro de rede: ' + err.message);
       }
     });
   </script>

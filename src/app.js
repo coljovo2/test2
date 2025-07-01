@@ -48,19 +48,24 @@ app.post('/register', async (req, res) => {
   try {
     const existente = await User.findOne({ email });
     if (existente) {
-      return res.status(400).send('Email já cadastrado');
+      return res
+        .status(400)
+        .json({ success: false, message: 'E‑mail já cadastrado' });
     }
 
     const novoUsuario = new User({ nome, email, senha });
     await novoUsuario.save();
 
-    res.status(200).send('Usuário registrado com sucesso');
+    return res
+      .status(200)
+      .json({ success: true, message: 'Usuário registrado com sucesso' });
   } catch (error) {
     console.error('Erro no registro:', error);
-    res.status(500).send('Erro ao registrar');
+    return res
+      .status(500)
+      .json({ success: false, message: 'Erro ao registrar usuário: ' + error.message });
   }
 });
-
 
 // Login
 app.post('/login', async (req, res) => {
@@ -69,20 +74,23 @@ app.post('/login', async (req, res) => {
   try {
     const usuario = await User.findOne({ email, senha });
     if (!usuario) {
-      return res.status(401).send('Credenciais inválidas');
+      return res
+        .status(401)
+        .json({ success: false, message: 'Credenciais inválidas' });
     }
-
-    res.status(200).send('Login bem-sucedido');
+    return res
+      .status(200)
+      .json({ success: true, message: 'Login bem‑sucedido' });
   } catch (error) {
     console.error('Erro no login:', error);
-    res.status(500).send('Erro ao fazer login');
+    return res
+      .status(500)
+      .json({ success: false, message: 'Erro ao fazer login: ' + error.message });
   }
 });
 
 // ✅ Este trecho é essencial para a Render detectar que o servidor está rodando
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
-

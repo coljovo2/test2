@@ -24,7 +24,7 @@
       <button type="submit">Registrar</button>
 
       <div class="footer">
-        Já tem conta? <a href="/login.html">Entrar</a>
+        Já tem conta? <a href="/index.html">Entrar</a>
       </div>
     </form>
   </div>
@@ -40,19 +40,22 @@
         senha: formData.get('senha')
       };
 
-      const response = await fetch('/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
 
-      if (response.ok) {
-        window.location.href = '/home.html';
-      } else {
-        const error = await response.text();
-        alert('Erro: ' + error);
+        const resultado = await response.json();
+
+        if (resultado.success) {
+          window.location.href = '/home.html';
+        } else {
+          alert('Erro: ' + resultado.message);
+        }
+      } catch (err) {
+        alert('Erro de rede: ' + err.message);
       }
     });
   </script>
