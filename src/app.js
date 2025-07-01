@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Modelos
-const User = require('./meu-projeto/src/models/user');
+const User = require('./models/user');
 
 // Força o carregamento do .env na raiz do projeto
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
