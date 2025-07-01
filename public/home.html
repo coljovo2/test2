@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home - Bem-vindo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="home-container">
+    <!-- Caixa de boas-vindas -->
+    <div class="box">
+      <h1>Bem‑vindo!</h1>
+      <p>Parabéns por ter entrado.</p>
+      <button onclick="location.href='/index.html'">Sair</button>
+    </div>
+
+    <!-- Formulário de solicitação -->
+    <div class="form-box">
+      <h1>Envio de Solicitação</h1>
+      <form action="/api/solicitacoes" method="POST">
+        <label>Descrição:
+          <input name="descricao" required />
+        </label>
+
+        <label>Tipo de transporte:
+          <select name="opcoes[transporte]">
+            <option value="Aéreo">Aéreo</option>
+            <option value="Terrestre">Terrestre</option>
+            <option value="Marítimo">Marítimo</option>
+          </select>
+        </label>
+
+        <label>Data de entrega:
+          <input type="date" name="opcoes[dataEntrega]" required />
+        </label>
+
+        <label>Nome do destinatário:
+          <input name="destinatario[nome]" required />
+        </label>
+
+        <label>Email do destinatário:
+          <input type="email" name="destinatario[email]" required />
+        </label>
+
+        <label>Validade:
+          <input type="date" name="validade" required />
+        </label>
+
+        <button type="submit">Enviar Solicitação</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+""

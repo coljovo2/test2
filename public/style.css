@@ -1,0 +1,155 @@
+/* RESET E BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e2a38;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* CONTAINER PADRÃO */
+.container,
+.home-container {
+  background-color: #111820;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+.container:hover,
+.home-container:hover {
+  transform: translateY(-4px);
+}
+
+/* TÍTULO */
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* FORMULÁRIOS */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+label {
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin-bottom: 6px;
+}
+input,
+select {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #0d1117;
+  color: #ffffff;
+  border: 1px solid #2c3e50;
+  border-radius: 8px;
+  transition: border 0.3s ease, background-color 0.3s ease;
+  font-size: 1rem;
+}
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  background-color: #161b22;
+}
+
+/* PLACEHOLDER */
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* BOTÕES */
+button {
+  background-color: #4a90e2;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #357abe;
+}
+
+/* RODAPÉ / LINKS */
+.footer {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+.footer a {
+  color: #4a90e2;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer a:hover {
+  color: #74b0ff;
+}
+
+/* HOME CONTAINER (tela após login) */
+.home-container {
+  max-width: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 60px;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+.home-container .box {
+  background-color: #0d1117;
+  border-radius: 12px;
+  padding: 30px 20px;
+  width: 300px;
+  text-align: center;
+}
+.home-container .box h1 {
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+}
+.home-container .box p {
+  font-size: 1rem;
+  color: #bbb;
+  margin-bottom: 20px;
+}
+.home-container .box button {
+  width: 100%;
+}
+
+/* FORMULÁRIO AO LADO DO HOME */
+.form-box {
+  max-width: 400px;
+  width: 100%;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+  .home-container .box,
+  .form-box {
+    width: 100%;
+  }
+}
+

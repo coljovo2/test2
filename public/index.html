@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form id="login-form">
+      <label>Email:
+        <input type="email" name="email" required>
+      </label>
+
+      <label>Senha:
+        <input type="password" name="senha" required>
+      </label>
+
+      <button type="submit">Entrar</button>
+
+      <div class="footer">
+        Ainda não tem conta? <a href="/register.html">Registrar</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {
+        email: formData.get('email'),
+        senha: formData.get('senha')
+      };
+
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        window.location.href = '/home.html';
+      } else {
+        const error = await response.text();
+        alert('Erro: ' + error);
+      }
+    });
+  </script>
+</body>
+</html>
