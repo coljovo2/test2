@@ -44,18 +44,22 @@
           body: JSON.stringify(data),
         });
 
-        // sempre parse JSON
-        const resultado = await response.json();
+        const text = await response.text(); // lê como texto
+        let resultado = {};
+
+        try {
+          resultado = JSON.parse(text); // tenta converter para JSON
+        } catch {
+          throw new Error('Resposta inválida do servidor.');
+        }
 
         if (resultado.success) {
-          // redireciona para a página principal
           window.location.href = '/home.html';
         } else {
-          // mostra a mensagem de erro enviada pelo servidor
-          alert('Erro: ' + resultado.message);
+          alert('Erro: ' + (resultado.message || 'Erro desconhecido'));
         }
+
       } catch (err) {
-        // erro de rede ou outro
         alert('Erro de rede: ' + err.message);
       }
     });
