@@ -62,6 +62,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
+
 // Login
 app.post('/login', async (req, res) => {
   const { email, senha } = req.body;
@@ -77,5 +78,12 @@ app.post('/login', async (req, res) => {
     console.error('Erro no login:', error);
     res.status(500).send('Erro ao fazer login');
   }
+});
+
+// ✅ Este trecho é essencial para a Render detectar que o servidor está rodando
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
 
